@@ -1,17 +1,18 @@
-class VenuesController < ApplicationController
+class Api::V1::VenuesController < ApplicationController
   
   def index
-    @users = User.all
-    render json: @users
+    @venues = Venues.all
+    render json: @venues
   end
-  
+
   def create
-    @user = User.create(user_params)
+    @venue = Venue.create(venue_params)
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:id, :first_name, :last_name, :email, :password, :bio)
+  def venue_params
+    params.require(:venue).permit(:id, :name, :street_address, :city, :state, :zip_code, :user_id)
   end
+  
 end
